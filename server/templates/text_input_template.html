@@ -3,10 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>{{title}}</title>
+    <link rel= "stylesheet" href="{{ url_for('static',filename='styles/styles.css') }}">
 </head>
 <body>
-    <h1>{{heading}}</h1>
-    <h1>{{description}}</h1>
-    <h1>{{usecase}}</h1>
+    <div >
+        <h1>puddle</h1>
+        <ul class="ul-header">
+        <li class="ul-header-item"> <a class="reference" href="www.google.com"> All Models </a> </li>
+            <div class="rightAlign">
+                <li class="ul-header-item"><a class="reference" href="www.google.com"> More about puddle </a></li>
+            </div>
+
+        </ul>
+    </div>
+    <div class="center">
+            <h1 class="heading">{{heading}}</h1>
+            <p class="heading">By : {{authors|join(', ')}}</h1>
+                <h1> Description </h1>
+            <h2 class="description">{{description}}</h2>
+                <h1> Uses </h1>
+            <h2 class="usecase">{{usecase}}</h2>    
+            <h1> Test it out. </h1>
+            <form action="{{ url_for('run') }}" method="post">
+                <h1> Text to process: </h1> <textarea type="text" style="height:200px" name="text"> </textarea>
+                <input type="submit" value="Submit">
+            </form>
+    </div>
+
 </body>
 </html>

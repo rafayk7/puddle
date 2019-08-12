@@ -1,4 +1,6 @@
 import click
+import boto3, botocore
+from utils import get_s3_info
 
 @click.command()
 @click.option("--name", prompt="Your Project's Name",
