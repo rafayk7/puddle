@@ -9,4 +9,19 @@ Puddle is a Python package and CLI that allows Machine Learning developers and e
 4. Your unique webpage link will be displayed, usually www.puddle.com/models/ <proj-name>
 
 ### Why this exists
+There are too many models floating around online unused, that can be used by everyday people if the ML engineers had an easy way to share them. This takes care of the front-end, back-end component, and provides incredibly flexibility to engineers to be able to share their models easily. Think of it like the Github of Machine Learning Models. 
+
+## TODO
+1. Connect to SQL DB to store information
+2. Connect to Amazon S3 for file storage for models/run files. 
+3. Make model display page prettier
+4. Make landing page for project
+5. Create pipeline when user attempts to use model
+   1. Accept Input,
+   2. Validate input,
+   3. Run input through run file,
+   4. Get result,
+   5. Display resuly
+   
+   
 
