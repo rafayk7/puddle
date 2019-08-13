@@ -1,8 +1,9 @@
 import click
 import boto3, botocore
-from utils import get_s3_info
+from utils import get_s3_info, api_url
 import json
 import os
+import requests
 
 @click.command()
 @click.option('--config_file_path', '-f')
@@ -53,7 +54,7 @@ def main(config_file_path):
     click.echo("Model file {} and run file {} for {} uploaded".format(config["Model File Path"], config['Run File Path'], config["Name"]))
 
     # Call API for Uploading to DB
+    r = requests.post(url = "{}/models/add".format(api_url), json=config)
     
-
 if __name__ == "__main__":
     main()

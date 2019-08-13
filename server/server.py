@@ -3,6 +3,7 @@ from Consts import Consts
 from utils import get_db_info
 import os
 import pymysql.cursors
+import json
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ def get_db_conn():
         conn = pymysql.connect(host=server, port=port, user=uname, passwd=pword, db=dbname)
         return conn
 
-@app.route('/models/<project_unique_name>')
+@app.route('/models/<project_unique_name>', methods=['GET'])
 def deploy(project_unique_name):
     title = project_unique_name
     heading = "RESNET 18 Text NLP Analysis"
@@ -22,9 +23,30 @@ def deploy(project_unique_name):
 
     return render_template('text_input_template.html', title=title, heading=heading, description=description,
                            usecase=usecase, authors=authors)
+                           
+@app.route('/models/add', methods=['POST'])
+def add():
+    data = request.data
+    data = json.loads(data)
+    print(data)
+    conn = get_db_conn()
 
+    insertSql = "INSERT INTO " \
+                "`models_test`(`name`,`input_type`,`use_cases`, `model_s3`, `runfile_s3`, `description` ) " \
+                "VALUES(%s,%s, %s, %s, %s, %s)"
 
-@app.route('/create', methods=['GET'])
+    model_filename, model_file_extension = os.path.splitext(data['Model File Path'])
+    s3_model_name = 'models/{}/model{}'.format(data['Name'], model_file_extension)
+    s3_runfile_name = 'runfiles/{}/run.py'.format(data['Name'])
+
+    with conn.cursor() as cursor:
+        cursor.execute(insertSql, (data['Name'], data['Input Type'], data['Use Cases'], s3_model_name, s3_runfile_name, data['Description']))
+
+    conn.commit()
+    return {"added": "true"}
+
+# Initiliaze Table
+@app.route('/database/create', methods=['GET'])
 def create():
     conn = get_db_conn()
     createSql = "CREATE " \
@@ -36,7 +58,7 @@ def create():
                 "`model_s3` VARCHAR(255)," \
                 "`runfile_s3` VARCHAR(255)," \
                 "`description` TEXT," \
-                "PRIMARY KEY (`task_id`));"
+                "PRIMARY KEY (`model_id`));"
     insertSql = "INSERT INTO tasks(title,priority)VALUES(Learn MySQL INSERT Statement',1);"
     getSql = "SELECT * FROM tasks;"
     with conn.cursor() as cursor:
@@ -45,32 +67,16 @@ def create():
     return {"table": "created"}
 
 
-@app.route('/add', methods=['POST'])
-def add():
-    data = request.data
-    conn = get_db_conn()
-    createSql = "CREATE TABLE IF NOT EXISTS tasks (task_id INT AUTO_INCREMENT, title VARCHAR(255) " \
-                "NOT NULL,start_date DATE,due_date DATE,priority TINYINT NOT NULL DEFAULT 3,description " \
-                "TEXT,PRIMARY KEY (task_id));"
-    insertSql = "INSERT INTO `tasks`(`title`,`priority`) VALUES(%s,%s)"
-    getSql = "SELECT * FROM tasks;"
-    with conn.cursor() as cursor:
-        cursor.execute(insertSql, ("lmaooo", 2))
-
-    conn.commit()
-    return {"added": "true"}
-
-
+# For testing
 @app.route('/get', methods=['GET'])
 def get():
     conn = get_db_conn()
-    createSql = "CREATE TABLE IF NOT EXISTS tasks (task_id INT AUTO_INCREMENTtitle VARCHAR(255) NOT NULL,start_date DATE,due_date DATE,priority TINYINT NOT NULL DEFAULT 3,description TEXT,PRIMARY KEY (task_id));"
-    insertSql = "INSERT INTO tasks(title,priority)VALUES(Learn MySQL INSERT Statement',1);"
-    getSql = "select * from `tasks`"
+    getSql = "select * from `models_test`"
     with conn.cursor() as cursor:
         cursor.execute(getSql)
-        result = cursor.fetchone()
+        result = cursor.fetchall()
         print(result)
+
     return {"RESULT": result}
 
 

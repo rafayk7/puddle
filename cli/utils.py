@@ -24,4 +24,4 @@ def get_s3_info():
 
         return aws_key, aws_secret_key, bucket_name
 
-api_url = "localhost:5000/"
+api_url = "http://localhost:5000"
