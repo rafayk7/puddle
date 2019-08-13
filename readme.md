@@ -1,4 +1,5 @@
-# puddle
+![alt text](puddle.png)
+
 ### What it is
 Puddle is a Python package and CLI that allows Machine Learning developers and enthusiasts to quickly and easily host their models, with a beautiful UI to showcase their models, with just one command
 
