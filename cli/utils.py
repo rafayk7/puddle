@@ -15,7 +15,7 @@ def get_s3_info():
             BUCKET_NAME=bucket_name
     '''
 
-    with open('keys.txt', 'r') as f:
+    with open('../server/keys.txt', 'r') as f:
         lines = f.readlines()
         lines = [x.replace('\n', '').split('=')[1] for x in lines]
         aws_key = lines[5]
@@ -23,3 +23,5 @@ def get_s3_info():
         bucket_name = lines[7]
 
         return aws_key, aws_secret_key, bucket_name
+
+api_url = "localhost:5000/"

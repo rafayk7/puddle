@@ -23,4 +23,4 @@ def get_db_info():
         server = lines[3]
         port = lines[4]
     
-        return uname, dbname, pword, server, port
+        return uname, dbname, pword, server, int(port)

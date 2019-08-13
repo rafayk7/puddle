@@ -21,7 +21,7 @@ There are too many models floating around online unused, that can be used by eve
    2. Validate input,
    3. Run input through run file,
    4. Get result,
-   5. Display resuly
+   5. Display result
    
    
 

@@ -2,9 +2,10 @@ from flask import Flask, render_template, request
 from Consts import Consts
 from utils import get_db_info
 import os
-
+import pymysql.cursors
 
 app = Flask(__name__)
+
 
 @app.route('/models/<project_unique_name>')
 def deploy(project_unique_name):
@@ -17,10 +18,16 @@ def deploy(project_unique_name):
 
         return render_template('text_input_template.html', title=title, heading=heading, description=description, usecase=usecase, authors=authors)
 
-@app.route('/models/add', methods=['POST'])
+@app.route('/create', methods=['GET'])
 def add():
-        return "sa"
+        uname, dbname, pword, server, port = get_db_info() 
+        conn = pymysql.connect(host=server, port=port, user=uname, passwd=pword, db=dbname)
+        cur = conn.cursor()
 
+        cur.execute("SELECT * FROM test_table;")
+        res = cur.fetchone()
+        print("RESULT {}".format(res))
+        return res
 
 @app.route('/run', methods=['POST'])
 def run():

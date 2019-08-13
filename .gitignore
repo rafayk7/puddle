@@ -1,3 +1,5 @@
 .idea
 .vscode
 server/keys.txt
+server/__pycache__
+cli/__pycache__
