@@ -39,9 +39,11 @@ AWS_KEY=your_aws_key
 AWS_SECRET_KEY=your_aws_secret_key
 BUCKET_NAME=your_bucket_name
 ```
-7. Run cli/gen-config.py
-8. Run cli/deploy.py
-9. Run server/server.py
-10. See if everything works like it should by clicking on the link displayed by cli/deploy.py
-11. Start coding :)
+7. Go to localhost:5000/database/models/create
+8. Go to localhost:5000/database/authors_models/create
+9. Run cli/gen-config.py
+10. Run cli/deploy.py
+11. Run server/server.py
+12. See if everything works like it should by clicking on the link displayed by cli/deploy.py
+13. Start coding :)
 
