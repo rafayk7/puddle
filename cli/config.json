@@ -1,1 +1,1 @@
-{"Name": "test-project-4", "Description": "this is the fourth test project", "Input Type": "text", "Use Cases": "used for testing this fucking website thing", "Model File Path": "testmodel.pkl", "Run File Path": "testrunfile.py"}
+{"Name": "test-proj-5", "Description": "this is the fifth test, with authors wow", "Input Type": "text", "Use Cases": "used to test", "Model File Path": "model.pkl", "Run File Path": "run.py", "Authors": ["rafay kalim", " maggie vuong"]}
