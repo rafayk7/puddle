@@ -24,7 +24,7 @@
                 <h1> Uses </h1>
             <h2 class="usecase">{{usecase}}</h2>    
             <h1> Test it out. </h1>
-            <form action="{{ url_for('run') }}" method="post">
+            <form action="{{ url_for('runText') }}" method="post">
                 <h1> Text to process: </h1> <textarea type="text" style="height:200px" name="text"> </textarea>
                 <input type="submit" value="Submit">
             </form>
