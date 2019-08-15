@@ -133,7 +133,7 @@ def create():
 def createModelDB():
     conn = get_db_conn()
     createSql = "CREATE " \
-                "TABLE `models_test_2`(" \
+                "TABLE `models_test`(" \
                 "`model_id` INT AUTO_INCREMENT, " \
                 "`name` VARCHAR(255) NOT NULL," \
                 "`input_type` VARCHAR(255) NOT NULL," \
