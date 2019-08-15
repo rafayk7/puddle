@@ -21,6 +21,27 @@ There are too many models floating around online unused, that can be used by eve
    3. Run input through run file,
    4. Get result,
    5. Display result
-   
-   
+
+# How to contribute
+1. Set up an SQL database here - https://remotemysql.com/
+2. Get the username, password, dbname, server and port
+3. Set up an Amazon S3 account
+4. Get the AWS key, AWS Secret key, bucket name that you choose
+5. Clone this repo
+6. Create a file server/keys.txt, with the following format
+```
+USERNAME=your_db_username
+DBNAME=your_db_name
+PASSWORD=your_db_password
+SERVER=remotemysql.com
+PORT=your_db_port
+AWS_KEY=your_aws_key
+AWS_SECRET_KEY=your_aws_secret_key
+BUCKET_NAME=your_bucket_name
+```
+7. Run cli/gen-config.py
+8. Run cli/deploy.py
+9. Run server/server.py
+10. See if everything works like it should by clicking on the link displayed by cli/deploy.py
+11. Start coding :)
 
